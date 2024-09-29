@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry}
+\usepackage[colorlinks]{hyperref}
+\usepackage{relsize}
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+\setmainfont[Path=fnt/lato/, BoldItalicFont=*-BoldItalic.ttf, BoldFont=*-Bold.ttf, ItalicFont=*-LightItalic.ttf, UprightFont=*-Light.ttf]{Lato}
+\setsansfont[Path=fnt/lato/, BoldItalicFont=*-Italic.ttf, BoldFont=*-Regular.ttf, ItalicFont=*-ThinItalic.ttf, UprightFont=*-Thin.ttf]{Lato}
+
+\makeatletter
+\newcommand\fsc[1]{\@fsc@a#1 \relax\relax}
+\def\@fsc@a#1 #2\relax{\@fsc@b#1\relax\relax\if\relax#2\relax\else\ \@fsc@a#2\relax\fi}
+\def\@fsc@b#1#2\relax{%
+\ifnum`#1=\lccode`#1\relax%
+\textsmaller[1]{\char\uccode`#1}%
+\else%
+\textlarger[0]{#1}\fi%
+\ifx\relax#2\relax\else\@fsc@b#2\relax\fi%
+}
+\let\@old@itemize\itemize%
+\let\@old@enditemize\enditemize%
+\renewenvironment{itemize}{\@old@itemize[leftmargin=*]\relax}{\@old@enditemize}
+\makeatother
+
+\newcommand{\namesection}[3]{
+\hfill{
+\fontsize{40pt}{60pt}
+\fontspec[Path=fnt/lato/]{Lato-Thin.ttf}\selectfont #1 %
+\fontspec[Path=fnt/lato/]{Lato-Regular.ttf}\selectfont #2%
+}
+\vskip5pt
+\hfill{\fontspec[Path=fnt/lato/]{Lato-Thin.ttf}\fontsize{11pt}{14pt}\selectfont #3}\par
+\noindent\makebox[\linewidth]{\rule{0.9\paperwidth}{0.4pt}}
+\vspace{5pt}
+}
+
+\newcommand{\contents}[2]{%
+\begin{minipage}[t]{0.62\textwidth}#1\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.32\textwidth}#2\end{minipage}
+}
+
+\let\oldsection\section
+\renewcommand{\section}[2]{%
+\oldsection*{%
+\fontspec[Path=fnt/lato/]{Lato-Bold.ttf}\fontsize{16pt}{16pt}\selectfont\bfseries\fsc{#1}\normalfont%
+}
+#2
+}
+
+\newcommand{\resumeitem}[3]{%
+\par\fontspec[Path=fnt/lato/]{Lato-Bold.ttf}\fontsize{12pt}{12pt}\selectfont\bfseries\fsc{#1}\normalfont\ | %
+\fontspec[Path=fnt/lato/]{Lato-Light.ttf}\fontsize{12pt}{12pt}\selectfont\bfseries{#2}\normalfont%
+\par%
+#3%
+\vspace{5pt}%
+}
+
+\begin{document}
+
+\namesection{Behrooz}{Vedadian}{%
+\href{https://github.com/vedadian}{Github} | \href{https://www.linkedin.com/in/behrooz-vedadian/}{LinkedIn} | \href{mailto:vedadian@gmail.com}{vedadian at gmail dot com}
+}
+
+\contents{% Left column
+
+\section{Skills}{%
+\resumeitem{Programming}{C++, Python, $\lambda$-calculus, Javascript}{}%{See \href{https://github.com/vedadian}{github.com/vedadian}}%
+\resumeitem{Deep Learning Toolkits}{PyTorch, Tensorflow, \textasciitilde{JAX}, HuggingFace Transformers}{}%{See \href{https://github.com/vedadian}{github.com/vedadian}}%
+\resumeitem{Deep Learning Foundations}{Linear algebra, Convex Optimization, Measure theory, Modern statistics, Matrix Calculus}{}%{See \href{https://github.com/vedadian}{github.com/vedadian}}%
+\resumeitem{Frontend}{Qt, Vanilla HTML+CSS+JS, ReactJS}{}%{See \href{https://vedadian.com}{vedadian.com}}%
+}
+
+\section{Experience}{
+\resumeitem{Researcher and Senior Software Engineer}{Targoman Intelligent Processing Co. Pjc. (2015-Present)}{%
+\begin{itemize}
+  \item Development of a neural machine translation engine based on Marian-NMT toolkit (C++)
+  \item Development of a PDF layout analysis engine from scratch (Javascript \& WASM)
+  \item Development of a lightweight fast API server for neural machine translation engine on top of libevent (C++)
+\end{itemize}
+I co-founded Targoman with my supervisor and one of the lab colleges. Our main end-user software can be examined at \href{https://tarjomyar.ir/test.html}{https://tarjomyar.ir/test.html}
+}
+\resumeitem{Researcher and Senior Software Engineer}{HLT Lab \@ AmirKabir Univ. of Tech. (2013-2015)}{%
+\begin{itemize}
+  \item Development of a text processing library for Persian (C++)
+  \item Development of a robust statistical translation engine (C++)
+\end{itemize}
+Resulting software and libraries can be found in \href{https://github.com/targoman}{Targoman's github}
+}
+\resumeitem{Researcher and Senior Software Engineer}{Hoda System Co. Ltd. (2009-2014)}{%
+\begin{itemize}
+  \item Implementation of a convolution based OCR system for extracting Egyptian ID card information for Egypt City Bank using OpenCV (C++)
+  \item Implementation of multilayer perceptron using Intel MKL (C++)
+\end{itemize}
+}
+\resumeitem{Teacher's Assistant}{Computer Programming Course}{%
+at Sharif University of Technology (in 2001)
+}
+\resumeitem{Teacher's Assistant}{Statistical Natural Language Processing}{%
+at AmirKabir University of Technology (in 2014)
+}
+}
+
+}{% Right column
+\section{Honors}{
+\textbf{\fsc{National Computer Prog. Content}}
+\begin{itemize}
+  \item Randked $5^{th}$ in 1997
+  \item Randked $3^{rd}$ in 1998
+\end{itemize}
+
+\textbf{\fsc{National Ph.D. Entrance Exam.}}
+\begin{itemize}
+  \item Ranked $9^{th}$ in 2013
+\end{itemize}
+}
+\section{Education}{
+\textbf{Ph.D} | {AmirKabir Univ. of Tech.}
+\par Computer Engineering
+\par Artificial Intelligence
+\par ``Learning sequence to sequence maps by incorporating embedded input structure in deep networks for machine translation''
+\par \textit{Dr. Shahram Khadivi \& Dr. Mohammad Rahmati}
+
+\textbf{M.Sc} | {AmirKabir Univ. of Tech.}
+\par Electrical Engineering
+\par Communication Systems
+\par ``Signal Detection in Nonstationary Environments using Wavelets''
+\par \textit{Dr. Hamidreza AminDavar}
+
+\textbf{B.Sc} | {Sharif Univ. of Tech.}
+\par Electrical Engineering
+\par Electronics
+\par ``Speaker Identification using Hidden Markov Models''
+\par \textit{Dr. Mohammad Nayebi}
+
+\textbf{Diploma} | {National Organization of Developement of Exceptional Talents}
+\par Mathematics \& Physics
+
+}
+}
+\vskip15pt
+\hfill{Last updated \today}
+\end{document}
