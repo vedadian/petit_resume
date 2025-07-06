@@ -12,6 +12,9 @@
 *.cb2
 .*.lb
 
+## IDE
+.vscode
+
 ## Intermediate documents:
 *.dvi
 *.xdv
